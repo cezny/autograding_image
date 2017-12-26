@@ -1,6 +1,6 @@
 # Autolab - autograding docker image
 
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER Mihir Pandya <mihir.m.pandya@gmail.com>
 
 RUN apt-get update --fix-missing
