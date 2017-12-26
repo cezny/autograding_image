@@ -4,14 +4,15 @@ FROM ubuntu:16.04
 MAINTAINER Mihir Pandya <mihir.m.pandya@gmail.com>
 
 RUN apt-get update --fix-missing
-RUN apt-get install -y gcc
-RUN apt-get install -y make
-RUN apt-get install -y build-essential
+RUN apt-get install -y gcc make build-essential
 
 # Install autodriver
 WORKDIR /home
 RUN useradd autolab
 RUN useradd autograde
+RUN apt-get -y install sudo
+RUN adduser autolab sudo
+RUN adduser autograde sudo
 RUN mkdir autolab autograde output
 RUN chown autolab:autolab autolab
 RUN chown autolab:autolab output
@@ -25,7 +26,6 @@ RUN chmod +s /usr/bin/autodriver
 
 # Clean up
 WORKDIR /home
-RUN apt-get remove -y git
 RUN apt-get -y autoremove
 RUN rm -rf Tango/
 
